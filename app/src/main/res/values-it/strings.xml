@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="share_label">Leggi con Distilla</string>
+
+    <!-- Comuni -->
+    <string name="back">Indietro</string>
+    <string name="save">Salva</string>
+    <string name="cancel">Annulla</string>
+    <string name="delete">Elimina</string>
+    <string name="settings">Impostazioni</string>
+    <string name="copied">Testo copiato</string>
+    <string name="share_chooser">Condividi con</string>
+    <string name="no_browser">Nessun browser disponibile</string>
+    <string name="no_link_shared">Nel testo condiviso non c\'è un link</string>
+
+    <!-- Home -->
+    <string name="home_title">Leggi una notizia in testo semplice</string>
+    <string name="home_hint">Dal browser o da un\'app di notizie tocca «Condividi» e scegli Distilla. In alternativa incolla qui il link.</string>
+    <string name="url_label">URL della notizia</string>
+    <string name="paste">Incolla</string>
+    <string name="read">Leggi</string>
+    <string name="sites_configured">%1$d siti configurati</string>
+
+    <!-- Lettura -->
+    <string name="reload">Ricarica</string>
+    <string name="open_browser">Apri nel browser</string>
+    <string name="text_smaller">Testo più piccolo</string>
+    <string name="text_larger">Testo più grande</string>
+    <string name="copy">Copia</string>
+    <string name="share">Condividi</string>
+    <string name="listen">Ascolta</string>
+    <string name="rule">Regola</string>
+    <string name="create_rule">Crea regola</string>
+    <string name="cannot_read">Impossibile leggere la pagina</string>
+    <string name="retry">Riprova</string>
+    <string name="method_rule">Regola: %1$s</string>
+    <string name="method_auto">Rilevamento automatico</string>
+    <string name="method_jsonld">Dati strutturati della pagina</string>
+    <string name="method_full">Pagina intera</string>
+    <string name="warn_rule_no_match">La regola «%1$s» non ha trovato contenuto in questa pagina: uso il rilevamento automatico.</string>
+    <string name="warn_full_page">Non ho individuato il testo dell\'articolo: mostro tutta la pagina.</string>
+
+    <!-- Sintesi vocale -->
+    <string name="tts_pause">Pausa</string>
+    <string name="tts_resume">Riprendi</string>
+    <string name="tts_unavailable">La sintesi vocale non è disponibile su questo dispositivo. Installa o attiva un motore vocale nelle impostazioni di sistema.</string>
+    <string name="tts_language_missing">Nessuna voce installata per la lingua %1$s: leggo in %2$s.</string>
+    <string name="tts_language_none">Nessuna voce installata per la lingua %1$s: uso la voce predefinita.</string>
+    <string name="tts_install">Installa voci</string>
+    <string name="tts_error">Errore durante la lettura vocale.</string>
+    <string name="tts_settings">Impostazioni voce</string>
+
+    <!-- Errori -->
+    <string name="err_http">Il sito ha risposto con l\'errore HTTP %1$d.</string>
+    <string name="err_mime">Il link non porta a una pagina web (%1$s).</string>
+    <string name="err_host">Sito non raggiungibile: controlla la connessione o l\'indirizzo.</string>
+    <string name="err_timeout">Il sito non ha risposto in tempo.</string>
+    <string name="err_ssl">Errore nella connessione sicura (certificato TLS).</string>
+    <string name="err_url">Indirizzo non valido.</string>
+    <string name="err_json">Il file di configurazione non è un JSON valido.</string>
+    <string name="err_config_format">Il file di configurazione non contiene l\'elenco \"sites\".</string>
+    <string name="err_no_remote_url">Imposta prima l\'URL della configurazione condivisa.</string>
+    <string name="err_prefix">Errore: %1$s</string>
+
+    <!-- Impostazioni -->
+    <string name="export_sites">Esporta sites.json</string>
+    <string name="new_site">Nuovo sito</string>
+    <string name="section_shared">Configurazione condivisa (Git)</string>
+    <string name="remote_url_label">URL del file sites.json (raw)</string>
+    <string name="token_label">Token (solo per repository privati)</string>
+    <string name="online_update">Aggiornamento online</string>
+    <string name="online_update_desc">Cerca una nuova configurazione all\'avvio dell\'app, al massimo una volta al giorno</string>
+    <string name="sync_now">Sincronizza ora</string>
+    <string name="local_note">Le regole create o modificate qui sono locali. Se il file su Git contiene lo stesso URL con un XPath diverso, ti verrà chiesto cosa fare.</string>
+    <string name="resolve_conflicts">Risolvi %1$d conflitti</string>
+    <string name="section_sites">Siti configurati (%1$d)</string>
+    <string name="search">Cerca</string>
+    <string name="no_sites">Nessun sito configurato. Aggiungine uno con «Nuovo sito», crea una regola mentre leggi una notizia, oppure sincronizza la configurazione da Git.</string>
+    <string name="badge_local">Locale</string>
+    <string name="badge_git">Git</string>
+    <string name="delete_title">Eliminare la regola?</string>
+    <string name="delete_remote_note">È una regola scaricata da Git: tornerà alla prossima sincronizzazione finché resta nel repository. Per escluderla, modificala e diventerà locale.</string>
+    <string name="sync_result">%1$d siti nel repository: %2$d nuovi, %3$d aggiornati, %4$d rimossi.</string>
+    <string name="sync_kept">%1$d già identici in locale.</string>
+    <string name="sync_conflicts">%1$d conflitti da risolvere.</string>
+
+    <!-- Editor regola -->
+    <string name="rule_new">Nuovo sito</string>
+    <string name="rule_edit">Modifica sito</string>
+    <string name="rule_remote_note">Regola scaricata da Git: se la salvi diventa locale e la sincronizzazione non la aggiornerà più.</string>
+    <string name="rule_name">Nome (facoltativo)</string>
+    <string name="rule_pattern">URL con wildcard</string>
+    <string name="rule_pattern_hint">Es. *.ansa.it · www.ilpost.it/20* · https://*.esempio.it/news/*</string>
+    <string name="rule_xpath">XPath dell\'area della notizia (facoltativo)</string>
+    <string name="rule_xpath_hint">Vuoto = tutta la pagina. Es. //article oppure //div[@class=\'entry-content\']</string>
+    <string name="rule_xpath_invalid">XPath non valido</string>
+    <string name="rule_test_url">URL di prova</string>
+    <string name="rule_test_nomatch">Questo URL non corrisponde al pattern: la regola non verrebbe usata</string>
+    <string name="rule_test">Prova XPath</string>
+    <string name="test_none">Nessun elemento trovato con questo XPath.</string>
+    <string name="test_found">Trovati %1$d elementi, %2$d caratteri di testo.</string>
+
+    <!-- Conflitti di sincronizzazione -->
+    <string name="conflict_title">Conflitto con la configurazione Git</string>
+    <string name="conflict_counter">Conflitto %1$d di %2$d</string>
+    <string name="conflict_body">La configurazione condivisa legge in modo diverso un URL che hai configurato in locale.</string>
+    <string name="conflict_local">La tua configurazione locale</string>
+    <string name="conflict_remote">Configurazione su Git</string>
+    <string name="keep_local">Mantieni locale</string>
+    <string name="overwrite">Sovrascrivi</string>
+    <string name="keep_local_all">Mantieni locale per tutti</string>
+    <string name="overwrite_all">Sovrascrivi tutti</string>
+    <string name="disable_online">Disattiva aggiornamento online</string>
+    <string name="decide_later">Decidi dopo</string>
+    <string name="online_disabled_msg">Aggiornamento online disattivato. Puoi riattivarlo nelle Impostazioni.</string>
+    <string name="rule_include">Includi solo (selettore CSS, facoltativo)</string>
+    <string name="rule_include_hint">Es. .wp-block-paragraph, h2 · .wp-block-* = tutte le classi che iniziano con wp-block-</string>
+    <string name="rule_exclude">Escludi (selettore CSS, facoltativo)</string>
+    <string name="rule_exclude_hint">Es. .ad, .share-box, figure</string>
+    <string name="rule_css_invalid">Selettore CSS non valido</string>
+    <string name="rule_needs_selection">Compila almeno uno tra XPath, Includi, Escludi o User agent, oppure attiva il motore browser.</string>
+    <string name="order_title">L\'esclusione ha la priorità</string>
+    <string name="order_include_first_desc">Spento: prima includi. Gli elementi inclusi restano anche se sono dentro un\'area esclusa; l\'esclusione vale solo al loro interno.</string>
+    <string name="order_exclude_first_desc">Acceso: prima escludi. Le aree escluse vengono tolte con tutto il loro contenuto, poi si prendono gli elementi inclusi rimasti.</string>
+    <string name="cfg_xpath">XPath</string>
+    <string name="cfg_include">Includi</string>
+    <string name="cfg_exclude">Escludi</string>
+    <string name="cfg_whole_page">(tutta la pagina)</string>
+    <string name="tts_speed">Velocità di lettura</string>
+    <string name="history_title">Lette di recente (%1$d)</string>
+    <string name="history_clear">Elimina tutto</string>
+    <string name="history_clear_confirm">Eliminare tutta la cronologia?</string>
+    <string name="history_delete_item">Rimuovi dalla cronologia</string>
+    <string name="import_file">Importa sites.json</string>
+    <string name="import_file_desc">Importa aggiunge le regole di un file come regole locali (non viene eliminato niente; se un URL c\'è già con una configurazione diversa ti chiede cosa fare). Esporta salva tutte le tue regole come backup.</string>
+    <string name="import_result">%1$d siti nel file: %2$d aggiunti.</string>
+    <string name="import_error">Importazione non riuscita: %1$s</string>
+    <string name="err_file_unreadable">Impossibile aprire il file.</string>
+    <string name="err_file_too_large">Il file è troppo grande (max 5 MB).</string>
+    <string name="conflict_title_file">Conflitto con il file importato</string>
+    <string name="conflict_body_file">Il file legge in modo diverso un URL che hai già configurato.</string>
+    <string name="conflict_remote_file">Configurazione nel file</string>
+    <string name="export_file">Esporta sites.json</string>
+    <string name="export_done">Salvati %1$d siti.</string>
+    <string name="export_error">Esportazione non riuscita: %1$s</string>
+    <string name="section_requests">Richieste</string>
+    <string name="user_agent_label">User agent</string>
+    <string name="user_agent_hint">Inviato ai siti quando leggi una notizia. Vuoto = predefinito (Chrome su Android). Un sito può averne uno suo nella regola.</string>
+    <string name="ua_preset_mobile">Telefono Android</string>
+    <string name="ua_preset_desktop">PC desktop</string>
+    <string name="ua_clear">Usa quello dell\'app</string>
+    <string name="rule_user_agent">User agent per questo sito (facoltativo)</string>
+    <string name="rule_user_agent_hint">Vuoto = quello delle Impostazioni. Utile se il sito manda ai telefoni una pagina ridotta o diversa.</string>
+    <string name="cfg_user_agent">User agent</string>
+    <string name="cfg_auto">Rilevamento automatico</string>
+    <string name="test_auto">Rilevamento automatico: %1$d caratteri di testo.</string>
+    <string name="loading_browser">Il sito blocca le app: caricamento con il motore browser…</string>
+    <string name="via_browser">motore browser</string>
+    <string name="test_via_browser">(caricata con il motore browser)</string>
+    <string name="rule_browser">Carica sempre con il motore browser</string>
+    <string name="rule_browser_desc">Usa il motore Chrome del telefono (WebView): supera i blocchi anti-bot (HTTP 403) e vede anche il testo aggiunto da JavaScript. Più lento.</string>
+    <string name="browser_fallback">Usa il motore browser se un sito blocca l\'app</string>
+    <string name="browser_fallback_desc">Se un sito risponde 403, 429 o 503 la pagina viene ricaricata con il motore Chrome del telefono, come farebbe un normale browser.</string>
+    <string name="err_http_server">Il sito ha risposto con l\'errore HTTP %1$d (server: %2$s).</string>
+    <string name="err_blocked_hint">Sembra una protezione anti-bot: attiva il motore browser per questo sito.</string>
+    <string name="err_browser_timeout">La pagina non si è caricata in tempo con il motore browser (la verifica anti-bot del sito potrebbe richiedere una persona).</string>
+    <string name="loading_resolving">Link abbreviato: ricerca dell\'indirizzo reale…</string>
+    <string name="test_resolved">Link abbreviato → %1$s</string>
+    <string name="section_tts">Lettura vocale</string>
+    <string name="tts_guidance">Leggi come un navigatore (auto, Android Auto)</string>
+    <string name="tts_guidance_desc">Spento: la voce suona come la musica e la mette in pausa. Acceso: usa il canale della navigazione, sopra la radio o la musica (abbassandole), e si sente in auto anche quando l\'autoradio è su un\'altra sorgente.</string>
+    <string name="queue_title">Coda di ascolto</string>
+    <string name="folder_recent">Lette di recente</string>
+    <string name="queue_empty">La coda è vuota. Aggiungi notizie dalla cronologia con il pulsante ➕, oppure tocca «Ascolta tutte».</string>
+    <string name="enqueue">Aggiungi alla coda di ascolto</string>
+    <string name="in_queue">Già in coda</string>
+    <string name="queued">Aggiunta alla coda di ascolto</string>
+    <string name="listen_all">Ascolta tutte</string>
+    <string name="queue_clear">Svuota la coda</string>
+    <string name="queue_clear_confirm">Svuotare la coda di ascolto?</string>
+    <string name="move_up">Sposta su</string>
+    <string name="move_down">Sposta giù</string>
+    <string name="remove_from_queue">Togli dalla coda</string>
+    <string name="tts_next">Notizia successiva</string>
+    <string name="tts_previous">Precedente</string>
+    <string name="loading_story">Caricamento della notizia…</string>
+    <string name="paragraph">Paragrafo %1$d di %2$d</string>
+    <string name="now_reading">In lettura</string>
+    <string name="load_failed">Impossibile leggere «%1$s»: passo alla successiva.</string>
+    <string name="queue_ended">Coda finita</string>
+    <plurals name="queued_n">
+        <item quantity="one">%1$d notizia aggiunta alla coda</item>
+        <item quantity="other">%1$d notizie aggiunte alla coda</item>
+    </plurals>
+</resources>

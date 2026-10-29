@@ -1,0 +1,28 @@
+# Metadata file for F-Droid: goes in the fdroiddata repository as metadata/io.github.renzodambrosi.distilla.yml
+# (the file name must be the applicationId). Descriptions, icon and screenshots are read from
+# fastlane/metadata/android in this repository, so they are not repeated here.
+Categories:
+  - Reading
+  - Internet
+License: GPL-3.0-or-later
+AuthorName: Renzo D'Ambrosi
+SourceCode: https://github.com/renzodambrosi/Distilla
+IssueTracker: https://github.com/renzodambrosi/Distilla/issues
+
+AutoName: Distilla
+
+RepoType: git
+Repo: https://github.com/renzodambrosi/Distilla.git
+
+Builds:
+  - versionName: '1.0'
+    versionCode: 1
+    commit: v1.0
+    subdir: app
+    gradle:
+      - yes
+
+AutoUpdateMode: Version
+UpdateCheckMode: Tags
+CurrentVersion: '1.0'
+CurrentVersionCode: 1

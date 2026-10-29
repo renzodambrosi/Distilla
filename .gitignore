@@ -1,0 +1,25 @@
+# Android Studio / Gradle
+*.iml
+.gradle/
+.idea/
+.kotlin/
+/local.properties
+/build/
+/app/build/
+/captures/
+.externalNativeBuild/
+.cxx/
+.DS_Store
+
+# Build outputs: APKs, bundles and baseline profiles (they go in GitHub Releases, not in the repo)
+/app/release/
+/app/debug/
+*.apk
+*.aab
+*.dm
+output-metadata.json
+
+# Signing keys and their passwords: NEVER commit them
+*.jks
+*.keystore
+keystore.properties
