@@ -1,0 +1,17 @@
+Distilla trasforma la pagina di una notizia in testo semplice, come un browser da riga di comando: solo il titolo e l'articolo, senza menu, banner, pop-up dei cookie e box "leggi anche".
+
+Come si usa: dal browser o da qualsiasi app di notizie tocca Condividi e scegli "Leggi con Distilla". In un attimo hai il testo pulito, pronto da leggere, copiare o inoltrare in chat.
+
+<ul>
+<li><b>Testo pulito</b>: Distilla individua da sola il corpo dell'articolo.</li>
+<li><b>Copia e condividi</b> titolo, testo e link con un tocco.</li>
+<li><b>Ascolta</b>: la notizia viene letta dalla sintesi vocale del telefono, nella lingua in cui è scritta, a velocità 1×, 1,5× o 2×.</li>
+<li><b>Coda di ascolto</b>: metti in coda le notizie dalla cronologia e ascoltale una dopo l'altra, anche a schermo spento, con i controlli in notifica, i tasti del volante e Android Auto.</li>
+<li><b>Regole per sito</b>: per ogni giornale puoi indicare quale parte della pagina leggere (XPath, selettori CSS da includere o escludere) e provarle subito.</li>
+<li><b>Configurazione condivisa</b>: le regole possono essere scaricate da un repository Git e condivise con altri; quelle che modifichi restano tue. Importazione ed esportazione su file.</li>
+<li><b>Link abbreviati</b> (share.google, bit.ly…) risolti in automatico.</li>
+<li><b>Motore browser</b> per i siti che bloccano le app.</li>
+<li>Cronologia delle notizie lette, tema chiaro e scuro, italiano e inglese.</li>
+</ul>
+
+Nessun account, nessuna pubblicità, nessun tracciamento: tutto resta sul tuo telefono.

@@ -1,0 +1,17 @@
+Distilla turns a news web page into plain text, like a command-line browser: just the headline and the story, without menus, banners, cookie pop-ups or "read also" boxes.
+
+How it works: in your browser or any news app tap Share and pick "Read with Distilla". You get the clean text, ready to read, copy or forward in a chat.
+
+<ul>
+<li><b>Clean text</b>: Distilla finds the body of the article by itself.</li>
+<li><b>Copy and share</b> headline, text and link with one tap.</li>
+<li><b>Listen</b>: the story is read by your phone's text-to-speech, in the language it is written in, at 1×, 1.5× or 2× speed.</li>
+<li><b>Listening queue</b>: queue stories from the history and listen to them one after the other, even with the screen off, with notification controls, steering-wheel buttons and Android Auto.</li>
+<li><b>Site rules</b>: for each newspaper you can choose which part of the page to read (XPath, CSS selectors to include or exclude) and test them right away.</li>
+<li><b>Shared configuration</b>: rules can be downloaded from a Git repository and shared with others; the ones you edit stay yours. Import and export to file.</li>
+<li><b>Shortened links</b> (share.google, bit.ly…) resolved automatically.</li>
+<li><b>Browser engine</b> for sites that block apps.</li>
+<li>Reading history, light and dark theme, English and Italian.</li>
+</ul>
+
+No account, no ads, no tracking: everything stays on your phone.

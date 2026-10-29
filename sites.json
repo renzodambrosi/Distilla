@@ -1,0 +1,23 @@
+{
+    "version": 1,
+    "sites": [
+        {
+            "name": "Red Hot Cyber",
+            "pattern": "*.redhotcyber.com",
+            "include": ".wp-block-paragraph"
+        },
+        {
+            "name": "Esempio - XPath + includi/escludi con priorità all'esclusione",
+            "pattern": "www.example.org/notizie/*",
+            "xpath": "//article",
+            "include": "p, h2, .wp-block-*",
+            "exclude": ".ad, .share-box, .related",
+            "order": "exclude-first"
+        },
+        {
+            "name": "Esempio - solo XPath",
+            "pattern": "*.example.com",
+            "xpath": "//div[contains(concat(' ', normalize-space(@class), ' '), ' article-body ')]"
+        }
+    ]
+}

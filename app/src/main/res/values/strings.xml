@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Default language: English. Italian is in values-it/strings.xml -->
+<resources>
+    <string name="app_name" translatable="false">Distilla</string>
+    <string name="share_label">Read with Distilla</string>
+
+    <!-- Common -->
+    <string name="back">Back</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="settings">Settings</string>
+    <string name="copied">Text copied</string>
+    <string name="share_chooser">Share with</string>
+    <string name="no_browser">No browser available</string>
+    <string name="no_link_shared">The shared text contains no link</string>
+
+    <!-- Home -->
+    <string name="home_title">Read a news story as plain text</string>
+    <string name="home_hint">From your browser or a news app tap \"Share\" and pick Distilla. Or paste the link here.</string>
+    <string name="url_label">News URL</string>
+    <string name="paste">Paste</string>
+    <string name="read">Read</string>
+    <string name="sites_configured">%1$d sites configured</string>
+
+    <!-- Reader -->
+    <string name="reload">Reload</string>
+    <string name="open_browser">Open in browser</string>
+    <string name="text_smaller">Smaller text</string>
+    <string name="text_larger">Larger text</string>
+    <string name="copy">Copy</string>
+    <string name="share">Share</string>
+    <string name="listen">Listen</string>
+    <string name="rule">Rule</string>
+    <string name="create_rule">New rule</string>
+    <string name="cannot_read">Couldn\'t read the page</string>
+    <string name="retry">Retry</string>
+    <string name="method_rule">Rule: %1$s</string>
+    <string name="method_auto">Automatic detection</string>
+    <string name="method_jsonld">Page structured data</string>
+    <string name="method_full">Whole page</string>
+    <string name="warn_rule_no_match">The rule \"%1$s\" found no content on this page: using automatic detection.</string>
+    <string name="warn_full_page">Couldn\'t find the article text: showing the whole page.</string>
+
+    <!-- Text to speech -->
+    <string name="tts_pause">Pause</string>
+    <string name="tts_resume">Resume</string>
+    <string name="tts_unavailable">Text-to-speech isn\'t available on this device. Install or enable a voice engine in the system settings.</string>
+    <string name="tts_language_missing">No voice installed for %1$s: reading in %2$s.</string>
+    <string name="tts_language_none">No voice installed for %1$s: using the default voice.</string>
+    <string name="tts_install">Install voices</string>
+    <string name="tts_error">Voice playback error.</string>
+    <string name="tts_settings">Voice settings</string>
+
+    <!-- Errors -->
+    <string name="err_http">The site answered with HTTP error %1$d.</string>
+    <string name="err_mime">The link doesn\'t point to a web page (%1$s).</string>
+    <string name="err_host">Site unreachable: check your connection or the address.</string>
+    <string name="err_timeout">The site didn\'t respond in time.</string>
+    <string name="err_ssl">Secure connection error (TLS certificate).</string>
+    <string name="err_url">Invalid address.</string>
+    <string name="err_json">The configuration file isn\'t valid JSON.</string>
+    <string name="err_config_format">The configuration file has no \"sites\" list.</string>
+    <string name="err_no_remote_url">Set the shared configuration URL first.</string>
+    <string name="err_prefix">Error: %1$s</string>
+
+    <!-- Settings -->
+    <string name="export_sites">Export sites.json</string>
+    <string name="new_site">New site</string>
+    <string name="section_shared">Shared configuration (Git)</string>
+    <string name="remote_url_label">sites.json URL (raw)</string>
+    <string name="token_label">Token (private repositories only)</string>
+    <string name="online_update">Online updates</string>
+    <string name="online_update_desc">Look for a new configuration when the app starts, at most once a day</string>
+    <string name="sync_now">Sync now</string>
+    <string name="local_note">Rules you create or edit here are local. If the Git file has the same URL with a different XPath, you\'ll be asked what to do.</string>
+    <string name="resolve_conflicts">Resolve %1$d conflicts</string>
+    <string name="section_sites">Configured sites (%1$d)</string>
+    <string name="search">Search</string>
+    <string name="no_sites">No sites configured yet. Add one with \"New site\", create a rule while reading a story, or sync from Git.</string>
+    <string name="badge_local">Local</string>
+    <string name="badge_git">Git</string>
+    <string name="delete_title">Delete this rule?</string>
+    <string name="delete_remote_note">This rule comes from Git: it will come back on the next sync while it stays in the repository. To exclude it, edit it and it will become local.</string>
+    <string name="sync_result">%1$d sites in the repository: %2$d new, %3$d updated, %4$d removed.</string>
+    <string name="sync_kept">%1$d already identical locally.</string>
+    <string name="sync_conflicts">%1$d conflicts to resolve.</string>
+
+    <!-- Rule editor -->
+    <string name="rule_new">New site</string>
+    <string name="rule_edit">Edit site</string>
+    <string name="rule_remote_note">Rule downloaded from Git: saving it makes it local, so syncing won\'t update it any more.</string>
+    <string name="rule_name">Name (optional)</string>
+    <string name="rule_pattern">URL with wildcards</string>
+    <string name="rule_pattern_hint">e.g. *.ansa.it · www.ilpost.it/20* · https://*.example.com/news/*</string>
+    <string name="rule_xpath">XPath of the story area (optional)</string>
+    <string name="rule_xpath_hint">Empty = whole page. e.g. //article or //div[@class=\'entry-content\']</string>
+    <string name="rule_xpath_invalid">Invalid XPath</string>
+    <string name="rule_test_url">Test URL</string>
+    <string name="rule_test_nomatch">This URL doesn\'t match the pattern: the rule wouldn\'t be used</string>
+    <string name="rule_test">Test XPath</string>
+    <string name="test_none">No element found with this XPath.</string>
+    <string name="test_found">Found %1$d elements, %2$d characters of text.</string>
+
+    <!-- Sync conflicts -->
+    <string name="conflict_title">Conflict with the Git configuration</string>
+    <string name="conflict_counter">Conflict %1$d of %2$d</string>
+    <string name="conflict_body">The shared configuration reads a URL you set up locally in a different way.</string>
+    <string name="conflict_local">Your local configuration</string>
+    <string name="conflict_remote">Configuration on Git</string>
+    <string name="keep_local">Keep local</string>
+    <string name="overwrite">Overwrite</string>
+    <string name="keep_local_all">Keep local for all</string>
+    <string name="overwrite_all">Overwrite all</string>
+    <string name="disable_online">Disable online updates</string>
+    <string name="decide_later">Decide later</string>
+    <string name="online_disabled_msg">Online updates disabled. You can turn them back on in Settings.</string>
+    <string name="rule_include">Include only (CSS selector, optional)</string>
+    <string name="rule_include_hint">e.g. .wp-block-paragraph, h2 · .wp-block-* = every class starting with wp-block-</string>
+    <string name="rule_exclude">Exclude (CSS selector, optional)</string>
+    <string name="rule_exclude_hint">e.g. .ad, .share-box, figure</string>
+    <string name="rule_css_invalid">Invalid CSS selector</string>
+    <string name="rule_needs_selection">Fill in at least one of XPath, Include, Exclude or User agent, or turn on the browser engine.</string>
+    <string name="order_title">Exclusion has priority</string>
+    <string name="order_include_first_desc">Off: include first. Included elements are kept even inside excluded areas; exclusions only apply inside them.</string>
+    <string name="order_exclude_first_desc">On: exclude first. Excluded areas are removed with everything inside them, then the included elements are taken from what is left.</string>
+    <string name="cfg_xpath">XPath</string>
+    <string name="cfg_include">Include</string>
+    <string name="cfg_exclude">Exclude</string>
+    <string name="cfg_whole_page">(whole page)</string>
+    <string name="tts_speed">Reading speed</string>
+    <string name="history_title">Recently read (%1$d)</string>
+    <string name="history_clear">Delete all</string>
+    <string name="history_clear_confirm">Delete the whole history?</string>
+    <string name="history_delete_item">Remove from history</string>
+    <string name="import_file">Import sites.json</string>
+    <string name="import_file_desc">Import adds the rules of a file as local rules (nothing is deleted; a URL that already exists with a different configuration asks what to do). Export saves all your rules as a backup.</string>
+    <string name="import_result">%1$d sites in the file: %2$d added.</string>
+    <string name="import_error">Import failed: %1$s</string>
+    <string name="err_file_unreadable">Couldn\'t open the file.</string>
+    <string name="err_file_too_large">The file is too large (max 5 MB).</string>
+    <string name="conflict_title_file">Conflict with the imported file</string>
+    <string name="conflict_body_file">The file reads a URL you already set up in a different way.</string>
+    <string name="conflict_remote_file">Configuration in the file</string>
+    <string name="export_file">Export sites.json</string>
+    <string name="export_done">Saved %1$d sites.</string>
+    <string name="export_error">Export failed: %1$s</string>
+    <string name="section_requests">Requests</string>
+    <string name="user_agent_label">User agent</string>
+    <string name="user_agent_hint">Sent to the sites when reading a story. Empty = default (Chrome on Android). A site can set its own in its rule.</string>
+    <string name="ua_preset_mobile">Android phone</string>
+    <string name="ua_preset_desktop">Desktop PC</string>
+    <string name="ua_clear">Use the app\'s</string>
+    <string name="rule_user_agent">User agent for this site (optional)</string>
+    <string name="rule_user_agent_hint">Empty = the one in Settings. Useful when the site sends a reduced or different page to phones.</string>
+    <string name="cfg_user_agent">User agent</string>
+    <string name="cfg_auto">Automatic detection</string>
+    <string name="test_auto">Automatic detection: %1$d characters of text.</string>
+    <string name="loading_browser">The site blocks apps: loading with the browser engine…</string>
+    <string name="via_browser">browser engine</string>
+    <string name="test_via_browser">(loaded with the browser engine)</string>
+    <string name="rule_browser">Always load with the browser engine</string>
+    <string name="rule_browser_desc">Uses the phone\'s Chrome engine (WebView): gets past anti-bot blocks (HTTP 403) and also sees text added by JavaScript. Slower.</string>
+    <string name="browser_fallback">Use the browser engine when a site blocks the app</string>
+    <string name="browser_fallback_desc">If a site answers 403, 429 or 503 the page is loaded again with the phone\'s Chrome engine, as a normal browser would.</string>
+    <string name="err_http_server">The site answered with HTTP error %1$d (server: %2$s).</string>
+    <string name="err_blocked_hint">It looks like an anti-bot protection: turn on the browser engine for this site.</string>
+    <string name="err_browser_timeout">The page didn\'t load with the browser engine in time (the site\'s anti-bot check may need a person).</string>
+    <string name="loading_resolving">Shortened link: looking up the real address…</string>
+    <string name="test_resolved">Shortened link → %1$s</string>
+    <string name="section_tts">Text to speech</string>
+    <string name="tts_guidance">Read like a navigator (car, Android Auto)</string>
+    <string name="tts_guidance_desc">Off: the voice plays like music and pauses it. On: it plays on the navigation channel, over the radio or music (lowering them), and is heard in the car even when the head unit is on another source.</string>
+    <string name="queue_title">Listening queue</string>
+    <string name="folder_recent">Recently read</string>
+    <string name="queue_empty">The queue is empty. Add stories from the history with the ➕ button, or tap "Listen to all".</string>
+    <string name="enqueue">Add to the listening queue</string>
+    <string name="in_queue">Already in the queue</string>
+    <string name="queued">Added to the listening queue</string>
+    <string name="listen_all">Listen to all</string>
+    <string name="queue_clear">Clear the queue</string>
+    <string name="queue_clear_confirm">Clear the listening queue?</string>
+    <string name="move_up">Move up</string>
+    <string name="move_down">Move down</string>
+    <string name="remove_from_queue">Remove from the queue</string>
+    <string name="tts_next">Next story</string>
+    <string name="tts_previous">Previous</string>
+    <string name="loading_story">Loading the story…</string>
+    <string name="paragraph">Paragraph %1$d of %2$d</string>
+    <string name="now_reading">Now reading</string>
+    <string name="load_failed">Couldn\'t read "%1$s": moving on to the next one.</string>
+    <string name="queue_ended">Queue finished</string>
+    <plurals name="queued_n">
+        <item quantity="one">%1$d story added to the queue</item>
+        <item quantity="other">%1$d stories added to the queue</item>
+    </plurals>
+</resources>
