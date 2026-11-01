@@ -34,7 +34,9 @@ Alcuni siti protetti da servizi anti-bot (Cloudflare, Akamai, DataDome…) rispo
 
 - **Automatico**: con *Impostazioni → Richieste → Usa il motore browser se un sito blocca l'app* (attivo di default), un 403, 429 o 503 fa ripetere il caricamento con il motore browser. Durante il tentativo compare "Il sito blocca le app: caricamento con il motore browser…", e sotto il titolo dell'articolo è indicato *motore browser*.
 - **Per sito**: nella regola, *Carica sempre con il motore browser* salta il download normale (più veloce per i siti che bloccano sempre). Nel `sites.json`: `"browser": true`. Una regola può contenere anche solo questa opzione.
-- Le pagine di verifica ("Just a moment…", "Checking your browser") vengono riconosciute: il motore aspetta che la verifica passi e prende la pagina vera. Se la verifica richiede un'azione di una persona (captcha), dopo 35 secondi compare un errore.
+- Le pagine di verifica ("Just a moment…", "Checking your browser", "Verifica che tu sia un essere umano") vengono riconosciute, anche quando il sito le invia con risposta 200 invece di 403: il motore aspetta che la verifica passi e prende la pagina vera.
+- **Verifica a schermo**: se dopo 15 secondi la verifica è ancora lì (molte passano solo in una pagina visibile, alcune chiedono un tocco su "Sono una persona"), il lettore mostra la pagina del sito con la scritta *Verifica anti-bot*. Quando la verifica passa, la notizia si apre da sola. Il cookie che il sito rilascia resta salvato nel motore browser, quindi per un po' le notizie successive dello stesso sito, anche nella coda di ascolto, si caricano senza chiedere nulla.
+- Nella **coda di ascolto** e in Android Auto la verifica non si può mostrare: la notizia viene saltata con l'avviso *«titolo»: il sito chiede una verifica anti-bot*, e **Apri** la apre nel lettore per completarla.
 - Nel motore browser vale l'user agent della regola del sito, se impostato; altrimenti quello vero della WebView (senza il marcatore "wv"), coerente con la sua impronta.
 - Gli errori HTTP ora indicano anche il server, per esempio *"errore HTTP 403 (server: cloudflare)"*.
 
@@ -69,16 +71,16 @@ Per aggiungere una lingua basta creare `res/values-<codice>/strings.xml` e aggiu
 - **In auto / Android Auto**: la voce chiede ad Android il *focus audio* e si dichiara come parlato, altrimenti Android Auto la silenzia. In *Impostazioni → Lettura vocale* l'opzione **Leggi come un navigatore** la fa passare sul canale della navigazione: si sente sopra la radio o la musica (che vengono abbassate), anche se l'autoradio non è sulla sorgente del telefono.
 - Una chiamata, l'assistente vocale o un'indicazione del navigatore mettono in pausa la lettura, che riprende da sola quando finiscono. Se un'altra app avvia la musica, la lettura resta in pausa.
 - Il testo viene letto un paragrafo alla volta: la barra mostra l'avanzamento, **Pausa** ferma la lettura e **Riprendi** riparte dall'inizio del paragrafo interrotto.
-- La lettura si ferma quando esci dall'articolo o ne apri un altro.
+- La lettura continua anche se esci dall'articolo o apri l'app su un'altra schermata: si ferma dal mini-lettore, dalla notifica o dalla coda.
 
 ## Compilare
 
 1. Apri la cartella in **Android Studio** (Ladybug 2024.2 o successivo) con *File → Open*.
-2. Attendi la sincronizzazione di Gradle (scarica Gradle 8.9, AGP 8.7, Kotlin 2.0).
+2. Attendi la sincronizzazione di Gradle (scarica Gradle 8.11, AGP 8.9, Kotlin 2.0).
 3. Collega il telefono con il debug USB attivo e premi **Run**.
 
 Per un APK da installare a mano: *Build → Build App Bundle(s) / APK(s) → Build APK(s)*. Il file è in `app/build/outputs/apk/`.
-La build `release` è firmata con la chiave di debug, comoda per uso personale; per la distribuzione configura una chiave tua in `app/build.gradle.kts`.
+La build `release` è firmata con la chiave indicata in `keystore.properties` (vedi `keystore.properties.example`); senza quel file usa la chiave di debug, che va bene solo per uso personale.
 
 Requisiti: Android 8.0 (API 26) o superiore.
 
@@ -219,6 +221,61 @@ app/src/main/java/it/distilla/
 ```
 
 Librerie: Jetpack Compose (Material 3), jsoup 1.18 per HTML e XPath, kotlinx.serialization-json.
+
+## Pubblicazione su GitHub (Releases)
+
+L'APK non va nel repository ma nelle **Releases**. Lo fa da solo il workflow `.github/workflows/release.yml`: a ogni tag `v*` compila, firma con la tua chiave, verifica la firma e crea la release con l'APK, il file `.sha256` e le novità prese dai changelog di `fastlane/`.
+
+**Una volta sola: la chiave nei Secrets.** In *Settings → Secrets and variables → Actions → New repository secret* crea:
+
+| Secret | Valore |
+|---|---|
+| `KEYSTORE_BASE64` | il file `.jks` codificato in base64 |
+| `KEYSTORE_PASSWORD` | password del keystore |
+| `KEY_ALIAS` | alias della chiave (es. `distilla`) |
+| `KEY_PASSWORD` | password della chiave |
+
+Per ottenere il base64 del `.jks`:
+
+```bash
+# Linux
+base64 -w0 distilla-upload.jks > distilla-upload.b64
+# macOS
+base64 -i distilla-upload.jks -o distilla-upload.b64
+# Windows (PowerShell): lo copia negli appunti
+[Convert]::ToBase64String([IO.File]::ReadAllBytes("distilla-upload.jks")) | Set-Clipboard
+```
+
+Con la CLI `gh` si può fare tutto da terminale, senza passare per file intermedi:
+
+```bash
+base64 -w0 ../distilla-upload.jks | gh secret set KEYSTORE_BASE64
+gh secret set KEYSTORE_PASSWORD
+gh secret set KEY_ALIAS --body distilla
+gh secret set KEY_PASSWORD
+```
+
+Cancella poi il file `.b64`: è la tua chiave, solo codificata.
+
+**A ogni nuova versione:**
+
+1. In `app/build.gradle.kts` aumenta `versionCode` (+1) e `versionName` (es. `1.1`).
+2. Scrivi le novità in `fastlane/metadata/android/it-IT/changelogs/<versionCode>.txt` e `en-US/changelogs/<versionCode>.txt`.
+3. Commit, poi tag e push:
+   ```bash
+   git commit -am "Distilla 1.1"
+   git tag -a v1.1 -m "Distilla 1.1"
+   git push origin master v1.1
+   ```
+4. In *Actions* segui la compilazione (circa 5 minuti); alla fine la release compare in *Releases*.
+
+Il workflow si ferma senza pubblicare se il tag non corrisponde a `versionName`, se manca un secret o se l'APK risulta firmato con la chiave di debug. Da *Actions → Release APK → Run workflow* si può anche fare una compilazione di prova: l'APK si scarica dalla pagina dell'esecuzione, senza creare una release.
+
+Note:
+- Non sostituire l'APK di una versione già pubblicata: per una correzione fai una nuova versione (es. `1.1.1`).
+- Nelle note di ogni release c'è l'impronta SHA-256 del certificato di firma: è la stessa per sempre e permette di verificare che l'APK sia tuo (per esempio con AppVerifier).
+- Con le release fatte così, gli utenti possono ricevere gli aggiornamenti con [Obtainium](https://github.com/ImranR98/Obtainium) indicando l'indirizzo del repository.
+- F-Droid compila da solo dai tag e firma con la propria chiave: chi installa da F-Droid non può aggiornare con l'APK di GitHub, e viceversa, senza prima disinstallare.
 
 ## Pubblicazione su Google Play
 

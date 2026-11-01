@@ -165,7 +165,7 @@
     <string name="browser_fallback_desc">If a site answers 403, 429 or 503 the page is loaded again with the phone\'s Chrome engine, as a normal browser would.</string>
     <string name="err_http_server">The site answered with HTTP error %1$d (server: %2$s).</string>
     <string name="err_blocked_hint">It looks like an anti-bot protection: turn on the browser engine for this site.</string>
-    <string name="err_browser_timeout">The page didn\'t load with the browser engine in time (the site\'s anti-bot check may need a person).</string>
+    <string name="err_browser_timeout">The page did not load in time with the browser engine.</string>
     <string name="loading_resolving">Shortened link: looking up the real address…</string>
     <string name="test_resolved">Shortened link → %1$s</string>
     <string name="section_tts">Text to speech</string>
@@ -194,4 +194,9 @@
         <item quantity="one">%1$d story added to the queue</item>
         <item quantity="other">%1$d stories added to the queue</item>
     </plurals>
+    <string name="err_challenge">The site shows an anti-bot check that has to be completed by a person: open the story in the reader to do it once.</string>
+    <string name="verify_title">Anti-bot check</string>
+    <string name="verify_hint">%1$s wants to make sure you are a person. Complete the check below (sometimes it passes by itself): the story opens automatically and, for a while, the next ones from this site will load by themselves.</string>
+    <string name="notice_verify">“%1$s”: the site asks for an anti-bot check, skipped.</string>
+    <string name="verify_open">Open</string>
 </resources>

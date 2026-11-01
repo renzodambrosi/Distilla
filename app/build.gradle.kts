@@ -26,8 +26,8 @@ android {
         targetSdk = 36
         // Version: change only these two lines. They are written as plain literals on purpose:
         // F-Droid reads them from this file to detect new releases.
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.1"
     }
 
     signingConfigs {

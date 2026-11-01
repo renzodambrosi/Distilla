@@ -3,6 +3,7 @@ package io.github.renzodambrosi.distilla.data
 import android.content.Context
 import io.github.renzodambrosi.distilla.core.Article
 import io.github.renzodambrosi.distilla.core.ArticleExtractor
+import io.github.renzodambrosi.distilla.core.BrowserHints
 import io.github.renzodambrosi.distilla.core.HttpErrorException
 import io.github.renzodambrosi.distilla.core.SiteRule
 import io.github.renzodambrosi.distilla.core.UrlMatcher
@@ -55,14 +56,32 @@ class ArticleLoader(context: Context) {
             stages?.usingBrowser(url)
             return browser.fetch(url, siteUa) to true
         }
-        return try {
+        val plain = try {
             withContext(Dispatchers.IO) {
                 ArticleExtractor.fetch(url, ArticleExtractor.effectiveUserAgent(rule, prefs.userAgent))
-            } to false
+            }
         } catch (e: HttpErrorException) {
             if (!e.looksBlocked || !prefs.browserFallback) throw e
-            stages?.usingBrowser(url)
-            browser.fetch(url, siteUa) to true
+            null
+        }
+        // Some protections answer 200 with the "checking your browser" page instead of 403
+        if (plain != null && !(prefs.browserFallback && looksLikeChallenge(plain))) return plain to false
+        stages?.usingBrowser(url)
+        return browser.fetch(url, siteUa) to true
+    }
+
+    private suspend fun looksLikeChallenge(doc: Document): Boolean =
+        withContext(Dispatchers.Default) { BrowserHints.isChallengePage(doc.outerHtml()) }
+
+    /**
+     * Text of a page obtained some other way, e.g. after the user completed the
+     * anti-bot check on screen ([target]: the address that was requested).
+     */
+    suspend fun extract(doc: Document, target: String, withBrowser: Boolean = true): Article {
+        val rules = withContext(Dispatchers.IO) { repo.load() }
+        return withContext(Dispatchers.Default) {
+            val rule = UrlMatcher.findRule(rules, doc.location()) ?: UrlMatcher.findRule(rules, target)
+            ArticleExtractor.extract(doc, target, rule).copy(loadedWithBrowser = withBrowser)
         }
     }
 

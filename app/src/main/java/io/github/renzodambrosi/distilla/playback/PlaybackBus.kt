@@ -22,17 +22,19 @@ object PlaybackBus {
         val loading: Boolean = false,
     )
 
-    enum class NoticeKind { TTS_UNAVAILABLE, LANGUAGE_MISSING, TTS_ERROR, LOAD_FAILED }
+    enum class NoticeKind { TTS_UNAVAILABLE, LANGUAGE_MISSING, TTS_ERROR, LOAD_FAILED, VERIFY_NEEDED }
 
     /**
      * Something to tell the user. [wanted] / [used]: language names for LANGUAGE_MISSING;
-     * [title]: the story that couldn't be loaded for LOAD_FAILED.
+     * [title]: the story that couldn't be loaded for LOAD_FAILED / VERIFY_NEEDED;
+     * [url]: for VERIFY_NEEDED, the story to open so the user can complete the site's check.
      */
     data class Notice(
         val kind: NoticeKind,
         val wanted: String? = null,
         val used: String? = null,
         val title: String? = null,
+        val url: String? = null,
     )
 
     enum class Output { MEDIA, GUIDANCE }

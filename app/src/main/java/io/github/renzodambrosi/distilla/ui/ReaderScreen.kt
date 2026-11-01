@@ -85,6 +85,7 @@ fun ReaderScreen(vm: MainViewModel, onBack: () -> Unit) {
         is ReaderState.Loaded -> s.article.url
         is ReaderState.Loading -> s.url
         is ReaderState.Failed -> s.url
+        is ReaderState.NeedsVerification -> s.url
         ReaderState.Idle -> null
     }
 
@@ -196,6 +197,9 @@ fun ReaderScreen(vm: MainViewModel, onBack: () -> Unit) {
                     }
                 }
                 is ReaderState.Loaded -> key(s.article.url, s.article.method) { ArticleView(s.article, fontSize) }
+                is ReaderState.NeedsVerification -> key(s.url) {
+                    VerifyView(s.url, s.host, s.userAgent, onPassed = vm::verified)
+                }
             }
         }
     }
