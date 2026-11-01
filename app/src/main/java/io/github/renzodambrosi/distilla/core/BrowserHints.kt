@@ -13,8 +13,17 @@ class HttpErrorException(val status: Int, val server: String?, val url: String) 
     val looksBlocked: Boolean get() = status in BrowserHints.BLOCKED_STATUS
 }
 
-/** The browser engine didn't get the page in time (e.g. an anti-bot check that never passes). */
+/** The browser engine didn't get the page in time (no anti-bot check seen: just a slow page). */
 class BrowserTimeoutException(val url: String) : IOException("browser engine timed out for $url")
+
+/**
+ * The site shows an anti-bot check that doesn't pass by itself in the hidden browser engine:
+ * it must be shown to the user, who completes it once (the site's cookie is then kept).
+ * [userAgent]: the one the hidden engine used (null = the engine's own); the visible
+ * check must use the same one, because the site ties its cookie to it.
+ */
+class ChallengeRequiredException(val url: String, val userAgent: String?) :
+    IOException("anti-bot check needs the user for $url")
 
 /** Helpers for loading pages with the system browser engine (Android WebView). */
 object BrowserHints {

@@ -163,7 +163,7 @@
     <string name="browser_fallback_desc">Se un sito risponde 403, 429 o 503 la pagina viene ricaricata con il motore Chrome del telefono, come farebbe un normale browser.</string>
     <string name="err_http_server">Il sito ha risposto con l\'errore HTTP %1$d (server: %2$s).</string>
     <string name="err_blocked_hint">Sembra una protezione anti-bot: attiva il motore browser per questo sito.</string>
-    <string name="err_browser_timeout">La pagina non si è caricata in tempo con il motore browser (la verifica anti-bot del sito potrebbe richiedere una persona).</string>
+    <string name="err_browser_timeout">La pagina non si è caricata in tempo con il motore browser.</string>
     <string name="loading_resolving">Link abbreviato: ricerca dell\'indirizzo reale…</string>
     <string name="test_resolved">Link abbreviato → %1$s</string>
     <string name="section_tts">Lettura vocale</string>
@@ -192,4 +192,9 @@
         <item quantity="one">%1$d notizia aggiunta alla coda</item>
         <item quantity="other">%1$d notizie aggiunte alla coda</item>
     </plurals>
+    <string name="err_challenge">Il sito mostra una verifica anti-bot che va completata da una persona: apri la notizia nel lettore per farla una volta.</string>
+    <string name="verify_title">Verifica anti-bot</string>
+    <string name="verify_hint">%1$s vuole verificare che sei una persona. Completa la verifica qui sotto (a volte passa da sola): la notizia si apre automaticamente e, per un po\', le prossime di questo sito si caricheranno da sole.</string>
+    <string name="notice_verify">«%1$s»: il sito chiede una verifica anti-bot, saltata.</string>
+    <string name="verify_open">Apri</string>
 </resources>

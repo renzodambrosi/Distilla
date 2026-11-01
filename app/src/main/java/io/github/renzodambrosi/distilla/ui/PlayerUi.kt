@@ -142,6 +142,7 @@ fun PlaybackNoticeEffect(vm: MainViewModel, snackbar: SnackbarHostState) {
             PlaybackBus.NoticeKind.TTS_UNAVAILABLE -> stringResource(R.string.tts_unavailable)
             PlaybackBus.NoticeKind.TTS_ERROR -> stringResource(R.string.tts_error)
             PlaybackBus.NoticeKind.LOAD_FAILED -> stringResource(R.string.load_failed, it.title.orEmpty())
+            PlaybackBus.NoticeKind.VERIFY_NEEDED -> stringResource(R.string.notice_verify, it.title.orEmpty())
             PlaybackBus.NoticeKind.LANGUAGE_MISSING ->
                 if (it.used != null) stringResource(R.string.tts_language_missing, it.wanted.orEmpty(), it.used)
                 else stringResource(R.string.tts_language_none, it.wanted.orEmpty())
@@ -149,17 +150,23 @@ fun PlaybackNoticeEffect(vm: MainViewModel, snackbar: SnackbarHostState) {
     }
     val installLabel = stringResource(R.string.tts_install)
     val settingsLabel = stringResource(R.string.tts_settings)
+    val verifyLabel = stringResource(R.string.verify_open)
     LaunchedEffect(n) {
         if (n == null) return@LaunchedEffect
         vm.consumePlaybackNotice()
         val action = when (n.kind) {
             PlaybackBus.NoticeKind.LANGUAGE_MISSING -> installLabel
             PlaybackBus.NoticeKind.TTS_UNAVAILABLE -> settingsLabel
+            PlaybackBus.NoticeKind.VERIFY_NEEDED -> verifyLabel.takeIf { n.url != null }
             else -> null
         }
         val result = snackbar.showSnackbar(text.orEmpty(), actionLabel = action, duration = SnackbarDuration.Long)
         if (result == SnackbarResult.ActionPerformed) {
-            if (n.kind == PlaybackBus.NoticeKind.LANGUAGE_MISSING) installTtsVoices(context) else openTtsSettings(context)
+            when (n.kind) {
+                PlaybackBus.NoticeKind.LANGUAGE_MISSING -> installTtsVoices(context)
+                PlaybackBus.NoticeKind.VERIFY_NEEDED -> n.url?.let { vm.open(it) }
+                else -> openTtsSettings(context)
+            }
         }
     }
 }

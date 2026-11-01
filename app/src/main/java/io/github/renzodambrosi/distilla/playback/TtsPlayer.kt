@@ -14,6 +14,7 @@ import com.google.common.util.concurrent.Futures
 import com.google.common.util.concurrent.ListenableFuture
 import io.github.renzodambrosi.distilla.core.PlayQueue
 import io.github.renzodambrosi.distilla.core.QueueSnapshot
+import io.github.renzodambrosi.distilla.core.ChallengeRequiredException
 import io.github.renzodambrosi.distilla.core.SpeechText
 import io.github.renzodambrosi.distilla.data.ArticleLoader
 import io.github.renzodambrosi.distilla.data.Prefs
@@ -316,6 +317,13 @@ class TtsPlayer(context: Context) : SimpleBasePlayer(Looper.getMainLooper()), Tt
                 prefetchNext()
             } catch (e: CancellationException) {
                 throw e
+            } catch (e: ChallengeRequiredException) {
+                // The site wants its anti-bot check done on screen: skip, and offer to open the story
+                skipFailed(
+                    QueueMedia.titleOf(item).ifBlank { QueueMedia.toQueueItem(item).host },
+                    PlaybackBus.NoticeKind.VERIFY_NEEDED,
+                    url,
+                )
             } catch (e: Exception) {
                 skipFailed(QueueMedia.titleOf(item).ifBlank { QueueMedia.toQueueItem(item).host })
             }
@@ -343,8 +351,12 @@ class TtsPlayer(context: Context) : SimpleBasePlayer(Looper.getMainLooper()), Tt
     }
 
     /** A story couldn't be read: say so and go on with the next one. */
-    private fun skipFailed(title: String) {
-        PlaybackBus.post(PlaybackBus.Notice(PlaybackBus.NoticeKind.LOAD_FAILED, title = title))
+    private fun skipFailed(
+        title: String,
+        kind: PlaybackBus.NoticeKind = PlaybackBus.NoticeKind.LOAD_FAILED,
+        url: String? = null,
+    ) {
+        PlaybackBus.post(PlaybackBus.Notice(kind, title = title, url = url))
         speakingGen = null
         nextStoryOrEnd()
     }

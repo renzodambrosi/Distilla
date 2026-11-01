@@ -17,6 +17,7 @@ import io.github.renzodambrosi.distilla.core.Article
 import io.github.renzodambrosi.distilla.core.ArticleExtractor
 import io.github.renzodambrosi.distilla.core.ConfigFormatException
 import io.github.renzodambrosi.distilla.core.BrowserTimeoutException
+import io.github.renzodambrosi.distilla.core.ChallengeRequiredException
 import io.github.renzodambrosi.distilla.core.ConflictOrigin
 import io.github.renzodambrosi.distilla.core.HttpErrorException
 import io.github.renzodambrosi.distilla.core.History
@@ -48,6 +49,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.SerializationException
 import org.jsoup.HttpStatusException
+import org.jsoup.Jsoup
 import org.jsoup.UnsupportedMimeTypeException
 import java.net.MalformedURLException
 import java.net.SocketTimeoutException
@@ -78,6 +80,10 @@ sealed interface ReaderState {
     data class Loading(val url: String, val withBrowser: Boolean = false, val resolving: Boolean = false) : ReaderState
     data class Loaded(val article: Article) : ReaderState
     data class Failed(val url: String, val message: String) : ReaderState
+    /** The site's anti-bot check must be completed on screen ([userAgent]: the one to use). */
+    data class NeedsVerification(val url: String, val userAgent: String?) : ReaderState {
+        val host: String get() = runCatching { java.net.URI(url).host?.removePrefix("www.") }.getOrNull() ?: url
+    }
 }
 
 /** Rule being edited in the dialog. [testUrl] lets the user try the XPath on a real page. */
@@ -237,22 +243,46 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
             }
             _reader.value = try {
                 // Shortened link → site rule → download (browser engine if blocked) → text
-                val article = loader.load(url, stages)
-                PlaybackBus.remember(article)   // "Listen" won't download it again
-                // Ordinary redirects too: history keeps the address the story was read at
-                updateHistory(History.replaceUrl(_history.value, target, article.url))
-                updateHistory(History.setTitle(_history.value, article.url, article.title))
-                ReaderState.Loaded(article)
+                showArticle(target, loader.load(url, stages))
             } catch (e: CancellationException) {
                 throw e
+            } catch (e: ChallengeRequiredException) {
+                // The hidden engine can't pass the site's check: show it to the user
+                ReaderState.NeedsVerification(target, e.userAgent)
             } catch (e: Exception) {
                 ReaderState.Failed(target, describe(e))
             }
         }
     }
 
+    private fun showArticle(target: String, article: Article): ReaderState {
+        PlaybackBus.remember(article)   // "Listen" won't download it again
+        // Ordinary redirects too: history keeps the address the story was read at
+        updateHistory(History.replaceUrl(_history.value, target, article.url))
+        updateHistory(History.setTitle(_history.value, article.url, article.title))
+        return ReaderState.Loaded(article)
+    }
+
+    /** The user completed the anti-bot check on screen: [html] is the real page. */
+    fun verified(html: String, pageUrl: String) {
+        val s = _reader.value as? ReaderState.NeedsVerification ?: return
+        loadJob?.cancel()
+        _reader.value = ReaderState.Loading(s.url, withBrowser = true)
+        loadJob = viewModelScope.launch {
+            _reader.value = try {
+                val doc = withContext(Dispatchers.Default) { Jsoup.parse(html, pageUrl) }
+                showArticle(s.url, loader.extract(doc, s.url))
+            } catch (e: CancellationException) {
+                throw e
+            } catch (e: Exception) {
+                ReaderState.Failed(s.url, describe(e))
+            }
+        }
+    }
+
     fun reload() {
         when (val s = _reader.value) {
+            is ReaderState.NeedsVerification -> open(s.url, openedFromShare)
             is ReaderState.Loaded -> open(s.article.requestedUrl, openedFromShare)
             is ReaderState.Failed -> open(s.url, openedFromShare)
             is ReaderState.Loading -> open(s.url, openedFromShare)
@@ -633,6 +663,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
             if (e.looksBlocked) append(' ').append(str(R.string.err_blocked_hint))
         }
         is BrowserTimeoutException -> str(R.string.err_browser_timeout)
+        is ChallengeRequiredException -> str(R.string.err_challenge)
         is HttpStatusException -> str(R.string.err_http, e.statusCode)
         is UnsupportedMimeTypeException -> str(R.string.err_mime, e.mimeType ?: "?")
         is UnknownHostException -> str(R.string.err_host)
