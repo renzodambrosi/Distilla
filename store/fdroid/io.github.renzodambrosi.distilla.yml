@@ -3,7 +3,7 @@ Categories:
   - Reading
   - Text to Speech
 License: GPL-3.0-or-later
-AuthorName: Renzo D'Ambrosi
+AuthorName: Renzo DAmbrosi
 SourceCode: https://github.com/renzodambrosi/Distilla
 IssueTracker: https://github.com/renzodambrosi/Distilla/issues
 Changelog: https://github.com/renzodambrosi/Distilla/releases
@@ -22,12 +22,10 @@ Builds:
     subdir: app
     gradle:
       - yes
-    prebuild: sed -i -e 's/signingConfig = signingConfigs.getByName(if 
-      (hasReleaseKey) "release" else "debug")/signingConfig = null/' 
-      build.gradle.kts
+    prebuild: sed -i -e 's/signingConfig = signingConfigs.getByName(if (hasReleaseKey)
+      "release" else "debug")/signingConfig = null/' build.gradle.kts
 
-AllowedAPKSigningKeys: 
-  1d6a2d9e6b878fed8578924563f5ed79bf272abc8d64d0bc301045d4b7ead9d9
+AllowedAPKSigningKeys: 1d6a2d9e6b878fed8578924563f5ed79bf272abc8d64d0bc301045d4b7ead9d9
 
 AutoUpdateMode: Version
 UpdateCheckMode: Tags
