@@ -1,0 +1,5 @@
+First public release.
+- Text-only articles from the Share menu
+- Per-site rules (XPath/CSS) and shared configuration via Git
+- Text-to-speech and listening queue, Android Auto included
+- Browser engine for sites that block apps, with anti-bot check

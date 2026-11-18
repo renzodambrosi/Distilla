@@ -1,0 +1,5 @@
+Prima versione pubblicata.
+- Notizie in solo testo dal menu Condividi
+- Regole per sito (XPath/CSS) e configurazione condivisa su Git
+- Lettura vocale e coda di ascolto, anche con Android Auto
+- Motore browser per i siti che bloccano le app, con verifica anti-bot

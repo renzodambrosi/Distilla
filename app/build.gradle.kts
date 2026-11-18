@@ -59,6 +59,12 @@ android {
     buildFeatures {
         compose = true
     }
+    // F-Droid: no encrypted dependency metadata blob in the APK signing block (it can't be audited
+    // and the F-Droid scanner rejects it). Google Play doesn't require it either.
+    dependenciesInfo {
+        includeInApk = false
+        includeInBundle = false
+    }
 }
 
 // APK name: distilla-1.0-release.apk / distilla-1.0-debug.apk (default would be app-release.apk)

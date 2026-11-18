@@ -199,7 +199,7 @@ Il file esportato è pronto da committare nel repository.
 ## Struttura
 
 ```
-app/src/main/java/it/distilla/
+app/src/main/java/io/github/renzodambrosi/distilla/
 ├── MainActivity.kt          ricezione del link condiviso
 ├── core/                    motore, senza dipendenze Android
 │   ├── ArticleExtractor.kt  download, regole XPath, rilevamento automatico, JSON-LD
