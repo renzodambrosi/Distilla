@@ -26,7 +26,7 @@ Distilla is an app that turns a news web page into plain text, to read it, copy 
 
 **Changes.** Any change to this policy will be published on this page.
 
-**Contact:** Renzo Dambrosi – renzo.dambrosi@gmail.com
+**Contact:** Renzo Dambrosi – please open an issue at https://github.com/renzodambrosi/Distilla/issues
 
 ---
 
@@ -54,4 +54,4 @@ Distilla è un'app che trasforma la pagina web di una notizia in testo semplice,
 
 **Modifiche.** Eventuali modifiche a questa informativa saranno pubblicate in questa pagina.
 
-**Contatti:** Renzo Dambrosi – renzo.dambrosi@gmail.com
+**Contatti:** Renzo Dambrosi – apri una segnalazione su https://github.com/renzodambrosi/Distilla/issues
