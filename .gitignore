@@ -23,3 +23,6 @@ output-metadata.json
 *.jks
 *.keystore
 keystore.properties
+
+# Gradle daemon JVM criteria written by Android Studio: would force a JetBrains JDK on CI and F-Droid
+/gradle/gradle-daemon-jvm.properties
